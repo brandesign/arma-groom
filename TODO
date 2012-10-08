@@ -1,0 +1,9 @@
+* fix design
+* fix manifest
+** rights for provider
+* find why refreshing view fails when we turn the device
+** find a way to load fast & progressive maybe?
+* do servers view
+* implements players side
+** add a search functionality
+** add alerts functionality

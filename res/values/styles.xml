@@ -1,0 +1,7 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:textColor">#F8F8F8<!-- following game's convention. cf. ArmaUtils.java --></item>
+    </style>
+
+</resources>

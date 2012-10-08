@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" >
+     <animation-list android:id="@+id/selected" android:oneshot="false">
+    <item android:drawable="@drawable/grid1" android:duration="50" />
+    <item android:drawable="@drawable/grid2" android:duration="50" />
+    <item android:drawable="@drawable/grid3" android:duration="50" />
+    <item android:drawable="@drawable/grid4" android:duration="50" />
+    <item android:drawable="@drawable/grid5" android:duration="50" />
+    <item android:drawable="@drawable/grid6" android:duration="50" />
+    <item android:drawable="@drawable/grid7" android:duration="50" />
+    <item android:drawable="@drawable/grid8" android:duration="50" />
+    <item android:drawable="@drawable/grid9" android:duration="50" />
+    <item android:drawable="@drawable/grid10" android:duration="50" />
+    <item android:drawable="@drawable/grid11" android:duration="50" />
+ </animation-list>
+
+</animation-list>

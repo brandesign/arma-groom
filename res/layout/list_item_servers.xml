@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/servers_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp" 
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp">
+
+    <org.armagetronad.groom.ScrollingTextView
+        android:id="@+id/servers_list_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/players_in_server"
+        android:lines="1"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
+        android:scrollHorizontally="true" />
+
+    <RelativeLayout
+        android:id="@id/players_in_server"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right" >
+
+        <TextView
+            android:id="@+id/servers_list_item_numplayers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/servers_list_item_slash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/servers_list_item_numplayers"
+            android:text="@string/numplayers_separator" />
+
+        <TextView
+            android:id="@+id/servers_list_item_maxplayers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/servers_list_item_slash" />
+    </RelativeLayout>
+
+</RelativeLayout>
