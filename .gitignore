@@ -17,3 +17,7 @@ local.properties
 
 # vim files
 *~
+
+# eclipse files
+.classpath
+.project
