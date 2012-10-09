@@ -93,29 +93,6 @@ public class MainActivity extends FragmentActivity {
 		}
 	}
 
-	public void reloadServers(boolean message) {
-		try {
-			((ServersFragment) mSectionsPagerAdapter.getItem(ITEM_SERVERS))
-					.reload(message);
-		} catch (IllegalStateException e) {
-			Log.e(Constants.TAG, "IllegalStateException. Don't know why...");
-			Toast.makeText(this, "Could not update view", Toast.LENGTH_SHORT)
-					.show();
-		}
-	}
-
-	public void reloadPlayers(boolean message) {
-		try {
-			((PlayersFragment) mSectionsPagerAdapter.getItem(ITEM_PLAYERS))
-					.reload(message);
-		} catch (IllegalStateException e) {
-			//TODO fix this
-			Log.e(Constants.TAG, "IllegalStateException. Don't know why...");
-			Toast.makeText(this, "Could not update view", Toast.LENGTH_SHORT)
-					.show();
-		}
-	}
-
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the primary sections of the app.
@@ -172,16 +149,6 @@ public class MainActivity extends FragmentActivity {
 		private static final String[] SELECTION_ARGS = null;
 		
 		public PlayersFragment() {
-		}
-
-		public void reload(boolean message) {
-
-			getLoaderManager().restartLoader(0, null, this);
-			mAdapter.notifyDataSetChanged();
-			if (message) {
-				Toast.makeText(getActivity(), "Updated data successfully",
-						Toast.LENGTH_SHORT).show();
-			}
 		}
 
 
@@ -243,16 +210,6 @@ public class MainActivity extends FragmentActivity {
 		private static final String[] SELECTION_ARGS = null;
 
 		public ServersFragment() {
-		}
-
-		public void reload(boolean message) {
-
-			getLoaderManager().restartLoader(0, null, this);
-			mAdapter.notifyDataSetChanged();
-			if (message) {
-				Toast.makeText(getActivity(), "Updated data successfully",
-						Toast.LENGTH_SHORT).show();
-			}
 		}
 
 		@Override

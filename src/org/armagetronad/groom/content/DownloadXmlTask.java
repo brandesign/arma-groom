@@ -3,16 +3,10 @@ package org.armagetronad.groom.content;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
-import org.apache.http.impl.io.ChunkedInputStream;
 import org.armagetronad.groom.ArmaUtils;
 import org.armagetronad.groom.Constants;
-import org.armagetronad.groom.MainActivity;
-import org.armagetronad.groom.MainActivity.ServersFragment;
 import org.armagetronad.groom.content.ArmaContent.Player;
 import org.armagetronad.groom.content.ArmaContent.Server;
 import org.armagetronad.groom.content.ArmaContent.Setting;
@@ -26,22 +20,19 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.RemoteException;
 import android.util.Log;
-import android.widget.Toast;
 
-public class DownloadXmlTask extends AsyncTask<String, Void, ServersFeed> {
+public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
 
 	private final Context context;
-	private final boolean reload;
 	private final Date date;
 
-	public DownloadXmlTask(Context ctx, boolean reload, Date date) {
+	public DownloadXmlTask(Context ctx, Date date) {
 		this.context = ctx;
-		this.reload = reload;
 		this.date = date;
 	}
 
 	@Override
-	protected ServersFeed doInBackground(String... urls) {
+	protected Void doInBackground(String... urls) {
 		Log.i(Constants.TAG, "Calling DownloadXmlTask with " + urls.length
 				+ " urls");
 		ServersFeed ret = null;
@@ -57,11 +48,11 @@ public class DownloadXmlTask extends AsyncTask<String, Void, ServersFeed> {
 			Log.e(Constants.TAG, "no data received, cancelling");
 			cancel(true);
 		}
-		return ret;
+		processResult(ret);
+		return null;
 	}
 
-	@Override
-	protected void onPostExecute(ServersFeed result) {
+	protected void processResult(ServersFeed result) {
 
 		Log.i(Constants.TAG,
 				"Download from server & parsing finished. Now adding to database");
@@ -130,13 +121,13 @@ public class DownloadXmlTask extends AsyncTask<String, Void, ServersFeed> {
 			e.printStackTrace();
 		}
 		client.release();
-		Log.i(Constants.TAG, "Data successfully added to db, updating view");
-		if (reload && context instanceof MainActivity) {
-			((MainActivity) context).reloadServers(true);
-			((MainActivity) context).reloadPlayers(true);
-		}
 	}
 
+	@Override
+	protected void onPostExecute(Void result) {
+		Log.i(Constants.TAG, "Data successfully added to db");
+	}
+	
 	private ServersFeed loadXmlFromNetwork(String urlString) {
 		InputStream stream = null;
 		ServersFeed serversFeed = null;

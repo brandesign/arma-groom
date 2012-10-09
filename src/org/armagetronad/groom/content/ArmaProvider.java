@@ -342,7 +342,7 @@ public class ArmaProvider extends ContentProvider {
 
 		private void fillData(SQLiteDatabase db) {
 
-			(new DownloadXmlTask(getContext(),false,null)).execute(Constants.URL_XML_FEEDS);
+			(new DownloadXmlTask(getContext(),null)).execute(Constants.URL_XML_FEEDS);
 
 		}
 		

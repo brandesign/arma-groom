@@ -2,7 +2,6 @@ package org.armagetronad.groom.content;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import org.armagetronad.groom.Constants;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 public class UpdateDatabaseTask extends AsyncTask<Void, Void, Boolean> {
 
 	private final Context displayContext;
+	private Date last;
 
 	public UpdateDatabaseTask(Context displayContext) {
 		this.displayContext = displayContext;
@@ -36,7 +36,7 @@ public class UpdateDatabaseTask extends AsyncTask<Void, Void, Boolean> {
 		ContentProviderClient client = displayContext.getContentResolver()
 				.acquireContentProviderClient(ArmaProvider.URI_SETTINGS);
 		Cursor cursor;
-		Date last = null;
+		Date lastDate = null;
 		try {
 			String[] projection = new String[] { Setting.SETTING_PARAM,
 					Setting.SETTING_VALUE };
@@ -46,17 +46,16 @@ public class UpdateDatabaseTask extends AsyncTask<Void, Void, Boolean> {
 					selection, selectionArgs, null);
 			if (cursor.moveToFirst()) {
 				String dateStr = cursor.getString(1);
-				last = new SimpleDateFormat(ArmaProvider.DATE_FORMAT)
+				lastDate = new SimpleDateFormat(ArmaProvider.DATE_FORMAT)
 						.parse(dateStr);
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			last = null;
+			lastDate = null;
 		}
-		new DownloadXmlTask(displayContext, true, last)
-				.execute(Constants.URL_XML_FEEDS);
+		last = lastDate;
 		return true;
 	}
 
@@ -64,7 +63,8 @@ public class UpdateDatabaseTask extends AsyncTask<Void, Void, Boolean> {
 	protected void onPostExecute(Boolean result) {
 		Toast.makeText(displayContext, "Downloading Feed from the internet",
 				Toast.LENGTH_LONG).show();
-		super.onPostExecute(result);
+		new DownloadXmlTask(displayContext, last)
+		.execute(Constants.URL_XML_FEEDS);
 	}
 
 }

@@ -3,7 +3,8 @@
 ** rights for provider
 * find why refreshing view fails when we turn the device
 ** find a way to load fast & progressive maybe?
-* do servers view
+* improve server view
+** allow scroll if it's too long
 * implements players side
 ** add a search functionality
-** add alerts functionality
+** add alerts functionality (GID? Name? regexp? how to keep it simple?)
