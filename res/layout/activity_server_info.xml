@@ -1,90 +1,95 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gridrepeat" >
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/server_info_server_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="marquee"
-        android:lines="1"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:scrollHorizontally="true" />
-
-    <TextView
-        android:id="@+id/server_info_server_port"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/server_info_server_name"
-        android:paddingBottom="5dp" />
-
-    <TextView
-        android:id="@+id/separator_ip_port"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/server_info_server_name"
-        android:layout_toLeftOf="@id/server_info_server_port"
-        android:paddingBottom="5dp"
-        android:text=" : " />
-
-    <org.armagetronad.groom.ScrollingTextView
-        android:id="@+id/server_info_server_ip"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/server_info_server_name"
-        android:layout_toLeftOf="@+id/separator_ip_port"
-        android:ellipsize="marquee"
-        android:gravity="right"
-android:singleLine="true"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:paddingBottom="5dp"
-        android:scrollHorizontally="true" />
-
-    <TextView
-        android:id="@+id/server_info_server_description"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/server_info_server_ip"
-        android:paddingBottom="5dp" />
+        android:background="@drawable/gridrepeat" >
 
-    <TextView
-        android:id="@+id/server_info_server_url"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/server_info_server_description"
-        android:autoLink="web"
-        android:paddingBottom="5dp" />
+        <TextView
+            android:id="@+id/server_info_server_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:lines="1"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:scrollHorizontally="true" />
 
-    <org.armagetronad.groom.ScrollingTextView
-        android:id="@+id/server_info_server_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/server_info_server_url"
-        android:ellipsize="marquee"
-        android:singleLine="true"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:paddingBottom="5dp"
-        android:scrollHorizontally="true" />
+        <TextView
+            android:id="@+id/server_info_server_port"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/server_info_server_name"
+            android:paddingBottom="5dp" />
 
-    <TextView
-        android:id="@+id/server_info_server_numplayers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/server_info_server_version"
-        android:gravity="center" />
+        <TextView
+            android:id="@+id/separator_ip_port"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/server_info_server_name"
+            android:layout_toLeftOf="@id/server_info_server_port"
+            android:paddingBottom="5dp"
+            android:text=" : " />
 
-    <LinearLayout
-        android:id="@+id/server_info_list_of_players"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/server_info_server_numplayers"
-        android:orientation="vertical" >
-    </LinearLayout>
+        <org.armagetronad.groom.ScrollingTextView
+            android:id="@+id/server_info_server_ip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/server_info_server_name"
+            android:layout_toLeftOf="@+id/separator_ip_port"
+            android:ellipsize="marquee"
+            android:gravity="right"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingBottom="5dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/server_info_server_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/server_info_server_ip"
+            android:paddingBottom="5dp" />
+
+        <TextView
+            android:id="@+id/server_info_server_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/server_info_server_description"
+            android:autoLink="web"
+            android:paddingBottom="5dp" />
+
+        <org.armagetronad.groom.ScrollingTextView
+            android:id="@+id/server_info_server_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/server_info_server_url"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingBottom="5dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/server_info_server_numplayers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/server_info_server_version"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:id="@+id/server_info_list_of_players"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/server_info_server_numplayers"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>
