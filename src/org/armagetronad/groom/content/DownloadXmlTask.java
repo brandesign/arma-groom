@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.armagetronad.groom.ArmaUtils;
 import org.armagetronad.groom.Constants;
+import org.armagetronad.groom.RuntimeData;
 import org.armagetronad.groom.content.ArmaContent.Player;
 import org.armagetronad.groom.content.ArmaContent.Server;
 import org.armagetronad.groom.content.ArmaContent.Setting;
@@ -19,7 +20,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.RemoteException;
+import android.support.v4.content.Loader;
 import android.util.Log;
+import android.widget.Toast;
 
 public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
 
@@ -117,7 +120,6 @@ public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
 		try {
 			client.insert(ArmaProvider.URI_SETTINGS, valuesSettings);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		client.release();
@@ -126,6 +128,11 @@ public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
 	@Override
 	protected void onPostExecute(Void result) {
 		Log.i(Constants.TAG, "Data successfully added to db");
+		for(Loader<?> loader : RuntimeData.getLoaders()) {
+			loader.forceLoad();
+		}
+		Toast.makeText(context, "Data successfully updated", Toast.LENGTH_LONG)
+		.show();
 	}
 	
 	private ServersFeed loadXmlFromNetwork(String urlString) {

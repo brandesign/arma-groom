@@ -22,16 +22,14 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
-	public static final String SERVER_ID = "com.kyo.ServerId";
+	public static final String SERVER_ID = "org.armagetronad.groom.ServerId";
 	public static final int ITEM_SERVERS = 0;
 	public static final int ITEM_PLAYERS = 1;
 
@@ -91,6 +89,12 @@ public class MainActivity extends FragmentActivity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+
+
+	public SectionsPagerAdapter getSectionsPagerAdapter() {
+		return mSectionsPagerAdapter;
 	}
 
 	/**
@@ -157,7 +161,9 @@ public class MainActivity extends FragmentActivity {
 			super.onCreate(savedInstanceState);
 			mAdapter = new PlayersCursorAdapter(getActivity(), null, 0);
 			setListAdapter(mAdapter);
-			getLoaderManager().initLoader(0, null, this);
+			Loader<Cursor> loader = getLoaderManager().initLoader(0, null, this);
+			
+			RuntimeData.addLoader(loader);
 		}
 
 		// Called when a new Loader needs to be created
@@ -217,7 +223,8 @@ public class MainActivity extends FragmentActivity {
 			super.onCreate(savedInstanceState);
 			mAdapter = new ServersCursorAdapter(getActivity(), null, 0);
 			setListAdapter(mAdapter);
-			getLoaderManager().initLoader(0, null, this);
+			Loader<Cursor> loader = getLoaderManager().initLoader(0, null, this);
+			RuntimeData.addLoader(loader);
 		}
 
 		// Called when a new Loader needs to be created
@@ -267,5 +274,6 @@ public class MainActivity extends FragmentActivity {
 	        addPreferencesFromResource(R.xml.preferences);
 	    }
 	}
+
 	
 }
