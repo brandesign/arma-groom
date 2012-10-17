@@ -17,4 +17,15 @@ public class RuntimeData {
 		return loaders;
 	}
 
+	public static boolean forceUpdateAllLoaders() {
+		try {
+			for(Loader<?> loader : RuntimeData.getLoaders()) {
+				loader.forceLoad();
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 }

@@ -36,6 +36,8 @@ public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
 
 	@Override
 	protected Void doInBackground(String... urls) {
+		Toast.makeText(context, "Downloading Feed from the internet",
+				Toast.LENGTH_LONG).show();
 		Log.i(Constants.TAG, "Calling DownloadXmlTask with " + urls.length
 				+ " urls");
 		ServersFeed ret = null;
@@ -128,11 +130,13 @@ public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
 	@Override
 	protected void onPostExecute(Void result) {
 		Log.i(Constants.TAG, "Data successfully added to db");
-		for(Loader<?> loader : RuntimeData.getLoaders()) {
-			loader.forceLoad();
+		if(RuntimeData.forceUpdateAllLoaders()) {
+			Toast.makeText(context, "Data successfully updated", Toast.LENGTH_LONG)
+			.show();
+		} else {
+			Toast.makeText(context, "Failure in updating data. An applicaiton restart may solve the issue.", Toast.LENGTH_LONG)
+			.show();
 		}
-		Toast.makeText(context, "Data successfully updated", Toast.LENGTH_LONG)
-		.show();
 	}
 	
 	private ServersFeed loadXmlFromNetwork(String urlString) {

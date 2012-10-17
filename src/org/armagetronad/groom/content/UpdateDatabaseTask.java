@@ -61,8 +61,6 @@ public class UpdateDatabaseTask extends AsyncTask<Void, Void, Boolean> {
 
 	@Override
 	protected void onPostExecute(Boolean result) {
-		Toast.makeText(displayContext, "Downloading Feed from the internet",
-				Toast.LENGTH_LONG).show();
 		new DownloadXmlTask(displayContext, last)
 		.execute(Constants.URL_XML_FEEDS);
 	}
