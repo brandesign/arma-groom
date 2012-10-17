@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.text.Html;
 import android.text.Spannable;
@@ -14,17 +15,27 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.widget.Toast;
 
 public class ArmaUtils {
-	
+
 	private static HashMap<String, String[]> auths = new HashMap<String, String[]>();
-	
+
 	static {
-		auths.put("ct", new String[] {"http://crazy-tronners.com/memberlist.php"});
-		auths.put("forums", new String[] {"http://forums3.armagetronad.net/memberlist.php?mode=viewprofile&un=",""});
-		auths.put("pru", new String[] {"http://trongame.de/forum/memberlist.php?mode=viewprofile&un=",""});
-		auths.put("phoenix-clan.org", new String[] {"http://phoenix-clan.org/memberlist.php?mode=viewprofile&un=",""});
-		auths.put("aagid",new String[] {"http://aagid.net/"});
+		auths.put("ct",
+				new String[] { "http://crazy-tronners.com/memberlist.php" });
+		auths.put(
+				"forums",
+				new String[] {
+						"http://forums3.armagetronad.net/memberlist.php?mode=viewprofile&un=",
+						"" });
+		auths.put("pru", new String[] {
+				"http://trongame.de/forum/memberlist.php?mode=viewprofile&un=",
+				"" });
+		auths.put("phoenix-clan.org", new String[] {
+				"http://phoenix-clan.org/memberlist.php?mode=viewprofile&un=",
+				"" });
+		auths.put("aagid", new String[] { "http://aagid.net/" });
 	}
 
 	public static final String uncolourize(String str) {
@@ -54,7 +65,7 @@ public class ArmaUtils {
 					try {
 						color += raw.charAt(k);
 					} catch (IndexOutOfBoundsException e) {
-						color="";
+						color = "";
 						break;
 					}
 				}
@@ -63,8 +74,8 @@ public class ArmaUtils {
 				end++;
 			}
 		}
-			str.setSpan(new ForegroundColorSpan(getColorInt(color)), start,
-					uncoloredName.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+		str.setSpan(new ForegroundColorSpan(getColorInt(color)), start,
+				uncoloredName.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 		return str;
 	}
 
@@ -81,7 +92,8 @@ public class ArmaUtils {
 		return Color.parseColor("#" + color);
 	}
 
-	public static HttpURLConnection getConnection(String urlString, int ... acceptedResponseCodes) throws IOException {
+	public static HttpURLConnection getConnection(String urlString,
+			int... acceptedResponseCodes) throws IOException {
 		URL url = new URL(urlString);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setReadTimeout(10000 /* milliseconds */);
@@ -92,34 +104,38 @@ public class ArmaUtils {
 		conn.connect();
 		boolean valid = false;
 		int response = conn.getResponseCode();
-		for(int code : acceptedResponseCodes) {
-			valid = (code == response) ? true : valid; 
+		for (int code : acceptedResponseCodes) {
+			valid = (code == response) ? true : valid;
 		}
-		if(!valid) {
+		if (!valid) {
 			throw new IOException("Response code not satisfactory");
 		}
-		Log.i(Constants.TAG,"got response "+conn.getResponseCode()+" from server of type "+conn.getContentType());
-		//InputStream stream = conn.getInputStream();
+		Log.i(Constants.TAG, "got response " + conn.getResponseCode()
+				+ " from server of type " + conn.getContentType());
+		// InputStream stream = conn.getInputStream();
 		return conn;
 	}
 
 	public static SpannableString linkifyGid(String gid) {
-		if(gid == null) {
+		if (gid == null) {
 			return null;
 		}
 		SpannableString ret = new SpannableString(gid);
-		String name = gid.substring(0,gid.lastIndexOf("@"));
-		String authority = gid.substring(gid.lastIndexOf("@")+1);
-		String mainAuth = authority.contains("/") ? authority.substring(0, authority.indexOf("/")) : authority;
-		
-		if(auths.containsKey(mainAuth)) {
+		String name = gid.substring(0, gid.lastIndexOf("@"));
+		String authority = gid.substring(gid.lastIndexOf("@") + 1);
+		String mainAuth = authority.contains("/") ? authority.substring(0,
+				authority.indexOf("/")) : authority;
+
+		if (auths.containsKey(mainAuth)) {
 
 			String link;
 			try {
-				if(auths.get(mainAuth).length == 1) {
+				if (auths.get(mainAuth).length == 1) {
 					link = auths.get(mainAuth)[0];
-				} else if(auths.get(mainAuth).length == 2) {
-				link = auths.get(mainAuth)[0]+URLEncoder.encode(name,"UTF-8")+auths.get(mainAuth)[1];
+				} else if (auths.get(mainAuth).length == 2) {
+					link = auths.get(mainAuth)[0]
+							+ URLEncoder.encode(name, "UTF-8")
+							+ auths.get(mainAuth)[1];
 				} else {
 					return ret;
 				}
@@ -127,21 +143,29 @@ public class ArmaUtils {
 				return ret;
 			}
 
-			ret = new SpannableString(Html.fromHtml("<a href=\""+link+"\">"+gid+"</a>"));	
+			ret = new SpannableString(Html.fromHtml("<a href=\"" + link + "\">"
+					+ gid + "</a>"));
 		}
-		
-		
+
 		return ret;
 	}
 
 	public static CharSequence displayPlayer(String playerName,
 			String playerGID, boolean linkGID) {
 		SpannableString name = colourize(playerName);
-		if(playerGID == null) {
+		if (playerGID == null) {
 			return name;
 		} else {
 			SpannableString gid = linkifyGid(playerGID);
-		return TextUtils.concat(name," (",gid,")");
+			return TextUtils.concat(name, " (", gid, ")");
+		}
+	}
+
+	public static void displayMessage(Context context, String message,
+			int length) {
+		try {
+			Toast.makeText(context, message, length).show();
+		} catch (Exception e) {
 		}
 	}
 }

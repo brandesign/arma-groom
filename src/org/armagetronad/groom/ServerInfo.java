@@ -125,7 +125,7 @@ public class ServerInfo extends FragmentActivity {
 				v.setText(ArmaUtils.displayPlayer(playerName, playerGID, true),
 						TextView.BufferType.SPANNABLE);
 				params = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.MATCH_PARENT,
+						LinearLayout.LayoutParams.FILL_PARENT,
 						LinearLayout.LayoutParams.WRAP_CONTENT);
 				v.setPadding(0, 6, 0, 6);
 				v.setLayoutParams(params);
@@ -148,11 +148,11 @@ public class ServerInfo extends FragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
+//		switch (item.getItemId()) {
+//		case android.R.id.home:
+//			NavUtils.navigateUpFromSameTask(this);
+//			return true;
+//		}
 		return super.onOptionsItemSelected(item);
 	}
 

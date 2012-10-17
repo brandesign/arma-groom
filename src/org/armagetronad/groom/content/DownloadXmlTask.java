@@ -20,7 +20,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.RemoteException;
-import android.support.v4.content.Loader;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -36,8 +35,8 @@ public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
 
 	@Override
 	protected Void doInBackground(String... urls) {
-		Toast.makeText(context, "Downloading Feed from the internet",
-				Toast.LENGTH_LONG).show();
+		ArmaUtils.displayMessage(context,
+				"Downloading feed from the internet...", Toast.LENGTH_LONG);
 		Log.i(Constants.TAG, "Calling DownloadXmlTask with " + urls.length
 				+ " urls");
 		ServersFeed ret = null;
@@ -130,15 +129,18 @@ public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
 	@Override
 	protected void onPostExecute(Void result) {
 		Log.i(Constants.TAG, "Data successfully added to db");
-		if(RuntimeData.forceUpdateAllLoaders()) {
-			Toast.makeText(context, "Data successfully updated", Toast.LENGTH_LONG)
-			.show();
+		if (RuntimeData.forceUpdateAllLoaders()) {
+			ArmaUtils.displayMessage(context, "Data successfully updated",
+					Toast.LENGTH_LONG);
 		} else {
-			Toast.makeText(context, "Failure in updating data. An applicaiton restart may solve the issue.", Toast.LENGTH_LONG)
-			.show();
+			ArmaUtils
+					.displayMessage(
+							context,
+							"Failure in updating data. An applicaiton restart may solve the issue.",
+							Toast.LENGTH_LONG);
 		}
 	}
-	
+
 	private ServersFeed loadXmlFromNetwork(String urlString) {
 		InputStream stream = null;
 		ServersFeed serversFeed = null;

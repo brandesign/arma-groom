@@ -12,7 +12,6 @@ import org.armagetronad.groom.content.UpdateDatabaseTask;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -82,10 +81,6 @@ public class MainActivity extends FragmentActivity {
 			new UpdateDatabaseTask(this).execute();
 			return true;
 		case R.id.menu_settings:
-			getFragmentManager().beginTransaction()
-            .replace(android.R.id.content, new SettingsFragment())
-            .commit();
-			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -262,17 +257,6 @@ public class MainActivity extends FragmentActivity {
 			intent.putExtra(SERVER_ID, serverId);
 			startActivity(intent);
 		}
-	}
-	
-	
-	public static class SettingsFragment extends PreferenceFragment {
-	    @Override
-	    public void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
-
-	        // Load the preferences from an XML resource
-	        addPreferencesFromResource(R.xml.preferences);
-	    }
 	}
 
 	
