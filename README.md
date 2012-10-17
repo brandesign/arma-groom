@@ -12,7 +12,12 @@ Please contact its current maintainer for more information.
 Information
 -----------
 
-ArmaGroom is an android application to access [armagetronad][]'s live data easily and anywhere.
+ArmaGroom is an android application to access [Armagetron Advanced][]'s live data easily and anywhere.
+
+Contributors
+------------
+
+*K-Yo* − Olivier Caillault
 
 <!--- links -->
-[armagetronad]: http://www.armagetronad.net/ "Armagetron Advanced"
+[Armagetron Advanced]: http://www.armagetronad.net/ "Armagetron Advanced"
