@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.armagetronad.groom.ArmaUtils;
 import org.armagetronad.groom.Constants;
 import org.armagetronad.groom.content.ArmaContent.Setting;
 
@@ -14,7 +15,7 @@ import android.os.AsyncTask;
 import android.os.RemoteException;
 import android.widget.Toast;
 
-public class UpdateDatabaseTask extends AsyncTask<Void, Void, Boolean> {
+public class UpdateDatabaseTask extends AsyncTask<Void, String, Boolean> {
 
 	private final Context displayContext;
 	private Date last;
@@ -25,13 +26,23 @@ public class UpdateDatabaseTask extends AsyncTask<Void, Void, Boolean> {
 
 	@Override
 	protected void onPreExecute() {
-		Toast.makeText(displayContext, "Refreshing...", Toast.LENGTH_LONG)
-				.show();
 		super.onPreExecute();
+	}
+	
+	@Override
+	protected void onProgressUpdate(String... values) {
+			Toast.makeText(displayContext, values[0], Toast.LENGTH_LONG)
+					.show();
 	}
 
 	@Override
 	protected Boolean doInBackground(Void... params) {
+		if(ArmaUtils.isOnline(displayContext)) {
+			publishProgress("Refreshing...");
+		} else {
+			publishProgress("Cannot connect to the internet");
+			cancel(true);
+		}
 		// TODO find a way to cache the date application wide
 		ContentProviderClient client = displayContext.getContentResolver()
 				.acquireContentProviderClient(ArmaProvider.URI_SETTINGS);

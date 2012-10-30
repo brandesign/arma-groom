@@ -9,6 +9,8 @@ import java.util.HashMap;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -167,5 +169,15 @@ public class ArmaUtils {
 			Toast.makeText(context, message, length).show();
 		} catch (Exception e) {
 		}
+	}
+	
+	public static boolean isOnline(Context context) {
+	    ConnectivityManager cm =
+	        (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnected()) {
+	        return true;
+	    }
+	    return false;
 	}
 }
