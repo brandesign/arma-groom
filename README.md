@@ -14,7 +14,7 @@ Licence
 ArmaGroom is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/deed.en_US).
 Please contact its current maintainer for more information.
 
-Note that part of this applications are taken from [Armagetron Advanced][] game [source][https://launchpad.net/armagetronad]. [Armagetron Advanced][] is released under the [GNU GPL v2][].
+Note that part of this applications are taken from [Armagetron Advanced][] game [source](https://launchpad.net/armagetronad). [Armagetron Advanced][] is released under the [GNU GPL v2][].
 
 Contributors
 ------------
