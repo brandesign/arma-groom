@@ -67,7 +67,8 @@ public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
 			client.delete(Uri.EMPTY, null, null);
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			//e1.printStackTrace();
+			// do nothing for the moment
 		}
 		ContentValues values;
 		Uri serverUri = null;

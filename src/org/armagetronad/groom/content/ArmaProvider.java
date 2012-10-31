@@ -18,9 +18,6 @@ import android.util.Log;
 
 public class ArmaProvider extends ContentProvider {
 
-	// TODO make a contract class :
-	// http://developer.android.com/reference/android/provider/ContactsContract.html
-
 	public static final String CONTENT_PROVIDER_DB_NAME = "armagroom.db";
 
 	public static final int CONTENT_PROVIDER_DB_VERSION = 6;
@@ -112,8 +109,6 @@ public class ArmaProvider extends ContentProvider {
 		StringBuffer result = new StringBuffer("vnd.android.cursor.");
 
 		result.append("item");
-		// result.append("dir");
-		// TODO handle the cases
 		result.append("/");
 
 		switch (sURIMatcher.match(uri)) {
@@ -189,7 +184,6 @@ public class ArmaProvider extends ContentProvider {
 		case URI_MATCHER_PLAYER_NAME_FILTER:
 			table = CONTENT_PROVIDER_TABLE_NAME_PLAYERS;
 			selection = Player.PLAYER_NAME + " LIKE ?";
-			// TODO check if % should be in selection
 			selectionArgs = new String[] { "%" + uri.getLastPathSegment() + "%" };
 			break;
 		case URI_MATCHER_PLAYER_ID:
@@ -205,7 +199,6 @@ public class ArmaProvider extends ContentProvider {
 		case URI_MATCHER_PLAYER_GID_FILTER:
 			table = CONTENT_PROVIDER_TABLE_NAME_PLAYERS;
 			selection = Player.PLAYER_GLOBAL_ID + " LIKE ?";
-			// TODO check if % should be in selection
 			selectionArgs = new String[] { "%" + uri.getLastPathSegment() + "%" };
 			break;
 		case URI_MATCHER_PLAYER_IN_SERVER_FILTER:
@@ -224,7 +217,6 @@ public class ArmaProvider extends ContentProvider {
 		case URI_MATCHER_SERVER_NAME_FILTER:
 			table = CONTENT_PROVIDER_TABLE_NAME_SERVERS;
 			selection = Server.SERVER_NAME + " LIKE ?";
-			// TODO check if % should be in selection
 			selectionArgs = new String[] { "%" + uri.getLastPathSegment() + "%" };
 			break;
 		case URI_MATCHER_SERVER_ID:
