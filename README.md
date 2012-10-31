@@ -6,6 +6,8 @@ Information
 
 ArmaGroom is an android application to access [Armagetron Advanced][]'s live data easily and anywhere.
 
+The application is available on [Google Play market](https://play.google.com/store/apps/details?id=org.armagetronad.groom).
+
 Licence
 -------
 
@@ -15,6 +17,9 @@ ArmaGroom is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unpor
 Please contact its current maintainer for more information.
 
 Note that part of this applications are taken from [Armagetron Advanced][] game [source](https://launchpad.net/armagetronad). [Armagetron Advanced][] is released under the [GNU GPL v2][].
+Among those we can find:
+- The Armagetronad Font
+- The game logo
 
 Contributors
 ------------
