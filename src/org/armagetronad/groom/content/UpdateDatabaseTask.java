@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.armagetronad.groom.ArmaUtils;
 import org.armagetronad.groom.Constants;
+import org.armagetronad.groom.MainActivity;
 import org.armagetronad.groom.content.ArmaContent.Setting;
 
 import android.content.ContentProviderClient;
@@ -13,6 +14,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.RemoteException;
+import android.util.Log;
 import android.widget.Toast;
 
 public class UpdateDatabaseTask extends AsyncTask<Void, String, Boolean> {
@@ -31,8 +33,12 @@ public class UpdateDatabaseTask extends AsyncTask<Void, String, Boolean> {
 	
 	@Override
 	protected void onProgressUpdate(String... values) {
+		try {
 			Toast.makeText(displayContext, values[0], Toast.LENGTH_LONG)
 					.show();
+	} catch (Exception e) {
+		Log.e(Constants.TAG, "Couldn't display message", e);
+	}
 	}
 
 	@Override

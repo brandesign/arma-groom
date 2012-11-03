@@ -23,7 +23,7 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
-public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
+public class DownloadXmlTask extends AsyncTask<String, String, Void> {
 
 	private final Context context;
 	private final Date date;
@@ -32,11 +32,16 @@ public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
 		this.context = ctx;
 		this.date = date;
 	}
+	
+	@Override
+	protected void onProgressUpdate(String... values) {
+			ArmaUtils.displayMessage(context, values[0], Toast.LENGTH_LONG);
+	}
 
 	@Override
 	protected Void doInBackground(String... urls) {
-		ArmaUtils.displayMessage(context,
-				"Downloading feed from the internet...", Toast.LENGTH_LONG);
+
+			publishProgress("Downloading feed from the internet...");
 		Log.i(Constants.TAG, "Calling DownloadXmlTask with " + urls.length
 				+ " urls");
 		ServersFeed ret = null;
@@ -156,10 +161,10 @@ public class DownloadXmlTask extends AsyncTask<String, Void, Void> {
 			// Makes sure that the InputStream is closed after the app is
 			// finished using it.
 		} catch (IOException e) {
-			Log.e(Constants.TAG, "got IOException " + e.getMessage());
+			Log.e(Constants.TAG, "got IOException " + e.getMessage(),e);
 			return null;
 		} catch (XmlPullParserException e) {
-			Log.e(Constants.TAG, "got XmlPullParserException " + e.getMessage());
+			Log.e(Constants.TAG, "got XmlPullParserException " + e.getMessage(),e);
 			return null;
 		} finally {
 			try {

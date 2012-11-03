@@ -1,11 +1,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/gridrepeat" >
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
         <TextView
@@ -52,7 +52,7 @@
 
         <TextView
             android:id="@+id/server_info_server_description"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/server_info_server_ip"
             android:paddingBottom="5dp" />
@@ -78,14 +78,14 @@
 
         <TextView
             android:id="@+id/server_info_server_numplayers"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/server_info_server_version"
             android:gravity="center" />
 
         <LinearLayout
             android:id="@+id/server_info_list_of_players"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/server_info_server_numplayers"
             android:orientation="vertical" >

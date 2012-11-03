@@ -6,6 +6,7 @@ import org.armagetronad.groom.content.ArmaContent.Server;
 import org.armagetronad.groom.content.ArmaContent.Setting;
 
 
+import android.app.Activity;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
@@ -333,8 +334,8 @@ public class ArmaProvider extends ContentProvider {
 		}
 
 		private void fillData(SQLiteDatabase db) {
-
-			(new DownloadXmlTask(getContext(),null)).execute(Constants.URL_XML_FEEDS);
+			
+			//(new DownloadXmlTask(getContext(),null)).execute(Constants.URL_XML_FEEDS);
 
 		}
 		
