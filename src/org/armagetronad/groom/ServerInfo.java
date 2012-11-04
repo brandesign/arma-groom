@@ -104,12 +104,12 @@ public class ServerInfo extends FragmentActivity {
 
 			setContentView(R.layout.activity_server_info);
 			((TextView) findViewById(R.id.server_info_server_name)).setText(
-					coloredName, TextView.BufferType.SPANNABLE);
+					coloredName);
 			((TextView) findViewById(R.id.server_info_server_ip)).setText(ip);
 			((TextView) findViewById(R.id.server_info_server_port))
 					.setText(port);
 			((TextView) findViewById(R.id.server_info_server_description))
-					.setText(coloredDescription, TextView.BufferType.SPANNABLE);
+					.setText(coloredDescription);
 			((TextView) findViewById(R.id.server_info_server_numplayers))
 					.setText(numplayers + "/" + maxplayers);
 			((TextView) findViewById(R.id.server_info_server_url))
@@ -127,8 +127,7 @@ public class ServerInfo extends FragmentActivity {
 						.getString(PROJECTION_PLAYER_NAME_INDEX);
 				playerGID = playersCursor
 						.getString(PROJECTION_PLAYER_GID_INDEX);
-				v.setText(ArmaUtils.displayPlayer(playerName, playerGID, true),
-						TextView.BufferType.SPANNABLE);
+				v.setText(ArmaUtils.displayPlayer(playerName, playerGID, true));
 				params = new LinearLayout.LayoutParams(
 						LinearLayout.LayoutParams.FILL_PARENT,
 						LinearLayout.LayoutParams.WRAP_CONTENT);

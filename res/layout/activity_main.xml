@@ -5,6 +5,7 @@
     android:layout_height="fill_parent"
     tools:context=".MainActivity"
     android:background="@drawable/gridrepeat"
+    
     >
 
     <!--
