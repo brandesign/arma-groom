@@ -20,8 +20,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/server_info_server_name" 
-        android:visibility="gone">
+        android:layout_below="@id/server_info_server_name"
+        android:visibility="gone"
+        >
 
         <TextView
             android:id="@+id/server_info_server_port"

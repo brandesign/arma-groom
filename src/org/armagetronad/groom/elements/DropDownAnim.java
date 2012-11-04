@@ -2,26 +2,24 @@ package org.armagetronad.groom.elements;
 
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.Transformation;
 
 public class DropDownAnim extends Animation {
     int targetHeight;
     View view;
-    boolean down;
+	int startingHeight;
 
-    public DropDownAnim(View view, int targetHeight, boolean down) {
+    public DropDownAnim(View view, int targetHeight) {
         this.view = view;
-        this.targetHeight = targetHeight;
-        this.down = down;
+        boolean down = view.getHeight() == 0;
+        this.targetHeight = down ? targetHeight : 0;
+        this.startingHeight = view.getHeight();
     }
 
     @Override
     protected void applyTransformation(float interpolatedTime, Transformation t) {
         int newHeight;
-        if (down) {
-            newHeight = (int) (targetHeight * interpolatedTime);
-        } else {
-            newHeight = (int) (targetHeight * (1 - interpolatedTime));
-        }
+        newHeight =  (int) (((targetHeight -startingHeight) * interpolatedTime) + startingHeight);
         view.getLayoutParams().height = newHeight;
         view.requestLayout();
     }
@@ -36,3 +34,4 @@ public class DropDownAnim extends Animation {
     public boolean willChangeBounds() {
         return true;
     }
+}

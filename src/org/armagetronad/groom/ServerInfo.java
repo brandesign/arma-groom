@@ -3,9 +3,9 @@ package org.armagetronad.groom;
 import org.armagetronad.groom.content.ArmaContent.Player;
 import org.armagetronad.groom.content.ArmaProvider;
 import org.armagetronad.groom.content.ArmaContent.Server;
+//import org.armagetronad.groom.elements.DropDownAnim;
 
 import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.content.ContentProviderClient;
@@ -16,10 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+//import android.view.ViewTreeObserver;
+//import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 
@@ -56,6 +57,7 @@ public class ServerInfo extends FragmentActivity {
 	private static final int PROJECTION_PLAYER_ID_INDEX = 0;
 	private static final int PROJECTION_PLAYER_NAME_INDEX = 1;
 	private static final int PROJECTION_PLAYER_GID_INDEX = 2;
+	private int optHeight;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -141,19 +143,37 @@ public class ServerInfo extends FragmentActivity {
 		} catch (CursorIndexOutOfBoundsException e) {
 			setContentView(R.layout.activity_server_info_not_found);
 		}
-		
+
+//		View opt = findViewById(R.id.server_info_optional);
+//		ViewTreeObserver vto = opt.getViewTreeObserver();
+//		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+//			@Override
+//			public void onGlobalLayout() {
+//				View opt = findViewById(R.id.server_info_optional);
+//				opt.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+//				optHeight = opt.getMeasuredHeight();
+//				opt.getLayoutParams().height = 0;
+//			}
+//		});
 
 		View title = findViewById(R.id.server_info_server_name);
 		title.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				View opt = findViewById(R.id.server_info_optional);
-				opt.setVisibility(View.VISIBLE);				
+//				DropDownAnim anim = new DropDownAnim(opt, optHeight);
+//				anim.setDuration(500);
+//				opt.startAnimation(anim);
+				if(opt.getVisibility() == View.VISIBLE) {
+					opt.setVisibility(View.GONE);
+				} else {
+					opt.setVisibility(View.VISIBLE);
+				}
 			}
 		});
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_server_info, menu);
@@ -162,11 +182,11 @@ public class ServerInfo extends FragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-//		switch (item.getItemId()) {
-//		case android.R.id.home:
-//			NavUtils.navigateUpFromSameTask(this);
-//			return true;
-//		}
+		// switch (item.getItemId()) {
+		// case android.R.id.home:
+		// NavUtils.navigateUpFromSameTask(this);
+		// return true;
+		// }
 		return super.onOptionsItemSelected(item);
 	}
 
