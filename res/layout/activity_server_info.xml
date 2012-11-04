@@ -3,17 +3,18 @@
     android:layout_height="fill_parent"
     android:background="@drawable/gridrepeat" >
 
-    <TextView
+    <org.armagetronad.groom.elements.ScrollingTextView
         android:id="@+id/server_info_server_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="marquee"
-        android:lines="1"
-        android:marqueeRepeatLimit="marquee_forever"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
-        android:scrollHorizontally="true" 
-        android:clickable="true"/>
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:clickable="true"
+        android:textSize="25dp"/>
 
     <RelativeLayout
         android:id="@+id/server_info_optional"
@@ -49,12 +50,12 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/server_info_server_name"
             android:layout_toLeftOf="@+id/separator_ip_port"
-            android:ellipsize="marquee"
             android:gravity="right"
+            android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
-            android:paddingBottom="5dp"
             android:scrollHorizontally="true"
             android:singleLine="true"
+            android:paddingBottom="5dp"
             android:textColor="#646464" />
 
         <TextView
