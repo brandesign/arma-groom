@@ -5,6 +5,7 @@ import org.armagetronad.groom.content.ArmaProvider;
 import org.armagetronad.groom.content.ArmaContent.Server;
 
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.content.ContentProviderClient;
@@ -13,6 +14,8 @@ import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v4.app.FragmentActivity;
@@ -138,8 +141,19 @@ public class ServerInfo extends FragmentActivity {
 		} catch (CursorIndexOutOfBoundsException e) {
 			setContentView(R.layout.activity_server_info_not_found);
 		}
-	}
+		
 
+		View title = findViewById(R.id.server_info_server_name);
+		title.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				View opt = findViewById(R.id.server_info_optional);
+				opt.setVisibility(View.VISIBLE);				
+			}
+		});
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_server_info, menu);

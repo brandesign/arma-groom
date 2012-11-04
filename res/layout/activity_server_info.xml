@@ -1,31 +1,35 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/gridrepeat" >
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/server_info_server_name"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:lines="1"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:scrollHorizontally="true" 
+        android:clickable="true"/>
 
-        <TextView
-            android:id="@+id/server_info_server_name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="marquee"
-            android:lines="1"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:scrollHorizontally="true" />
+    <RelativeLayout
+        android:id="@+id/server_info_optional"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/server_info_server_name" 
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/server_info_server_port"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/server_info_server_name"
-            android:paddingBottom="5dp" />
+            android:paddingBottom="5dp"
+        android:layout_alignParentRight="true"
+            android:textColor="#646464" />
 
         <TextView
             android:id="@+id/separator_ip_port"
@@ -34,9 +38,10 @@
             android:layout_below="@id/server_info_server_name"
             android:layout_toLeftOf="@id/server_info_server_port"
             android:paddingBottom="5dp"
-            android:text=" : " />
+            android:text=" : "
+            android:textColor="#646464" />
 
-        <org.armagetronad.groom.ScrollingTextView
+        <org.armagetronad.groom.elements.ScrollingTextView
             android:id="@+id/server_info_server_ip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -48,7 +53,8 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:paddingBottom="5dp"
             android:scrollHorizontally="true"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="#646464" />
 
         <TextView
             android:id="@+id/server_info_server_description"
@@ -65,7 +71,7 @@
             android:autoLink="web"
             android:paddingBottom="5dp" />
 
-        <org.armagetronad.groom.ScrollingTextView
+        <org.armagetronad.groom.elements.ScrollingTextView
             android:id="@+id/server_info_server_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,21 +81,26 @@
             android:paddingBottom="5dp"
             android:scrollHorizontally="true"
             android:singleLine="true" />
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/server_info_server_numplayers"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/server_info_server_version"
-            android:gravity="center" />
+    <TextView
+        android:id="@+id/server_info_server_numplayers"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/server_info_optional"
+        android:gravity="center" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/server_info_server_numplayers" >
 
         <LinearLayout
             android:id="@+id/server_info_list_of_players"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/server_info_server_numplayers"
             android:orientation="vertical" >
         </LinearLayout>
-    </RelativeLayout>
+    </ScrollView>
 
-</ScrollView>
+</RelativeLayout>

@@ -9,7 +9,7 @@
     android:paddingLeft="2dp"
     android:paddingRight="2dp">
 
-    <org.armagetronad.groom.ScrollingTextView
+    <org.armagetronad.groom.elements.ScrollingTextView
         android:id="@+id/servers_list_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

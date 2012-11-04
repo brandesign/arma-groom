@@ -1,4 +1,4 @@
-package org.armagetronad.groom;
+package org.armagetronad.groom.elements;
 
 import android.content.Context;
 import android.graphics.Rect;
