@@ -168,7 +168,6 @@ public class ArmaProvider extends ContentProvider {
 		String[] columns = projection;
 		String groupBy = null;
 		String having = null;
-		String orderBy = null;
 		String limit = null;
 
 		switch (sURIMatcher.match(uri)) {
@@ -249,7 +248,7 @@ public class ArmaProvider extends ContentProvider {
 		}
 
 		return db.query(table, columns, selection, selectionArgs, groupBy,
-				having, orderBy, limit);
+				having, sortOrder, limit);
 	}
 
 	private String getPort(Uri uri) {
