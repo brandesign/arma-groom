@@ -24,6 +24,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/server_info_server_name"
         android:visibility="gone"
+        android:layout_marginBottom="10dp"
         >
 
         <TextView

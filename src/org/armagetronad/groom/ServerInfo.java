@@ -12,6 +12,7 @@ import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -131,6 +132,7 @@ public class ServerInfo extends FragmentActivity {
 				params = new LinearLayout.LayoutParams(
 						LinearLayout.LayoutParams.FILL_PARENT,
 						LinearLayout.LayoutParams.WRAP_CONTENT);
+				v.setGravity(Gravity.CENTER_HORIZONTAL);
 				v.setPadding(0, 6, 0, 6);
 				v.setLayoutParams(params);
 				v.setMovementMethod(LinkMovementMethod.getInstance());
