@@ -157,8 +157,8 @@ public class ServerInfo extends FragmentActivity {
 //			}
 //		});
 
-		View title = findViewById(R.id.server_info_server_name);
-		title.setOnClickListener(new OnClickListener() {
+		View header = findViewById(R.id.server_info_header);
+		header.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
