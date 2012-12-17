@@ -6,7 +6,7 @@ Information
 
 ArmaGroom is an android application to access [Armagetron Advanced][]'s live data easily and anywhere.
 
-The application is available on [Google Play market](https://play.google.com/store/apps/details?id=org.armagetronad.groom).
+The application is available on [Google Play market](https://play.google.com/store/apps/details?id=org.armagetronad.groom). You can talk about the features on [the game forums](http://forums3.armagetronad.net/viewtopic.php?f=4&t=22749)
 
 Licence
 -------
