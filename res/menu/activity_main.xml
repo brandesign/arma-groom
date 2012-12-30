@@ -9,6 +9,6 @@
     <item android:id="@+id/menu_reorder"
         android:title="@string/menu_reorder"
         android:orderInCategory="20"
-        android:visible="true"/>
+        android:visible="false"/> <!-- set to false for release 1.1 has to change for 1.2 -->
     
 </menu>
