@@ -161,10 +161,14 @@ public class DownloadXmlTask extends AsyncTask<String, String, Void> {
 			// Makes sure that the InputStream is closed after the app is
 			// finished using it.
 		} catch (IOException e) {
+			// got an unexpected error
 			Log.e(Constants.TAG, "got IOException " + e.getMessage(),e);
+			// try the next one
 			return null;
 		} catch (XmlPullParserException e) {
-			Log.e(Constants.TAG, "got XmlPullParserException " + e.getMessage(),e);
+			// this is just an information, the error is not on our side.
+			Log.i(Constants.TAG, "got XmlPullParserException " + e.getMessage(),e);
+			// try the next one
 			return null;
 		} finally {
 			try {
