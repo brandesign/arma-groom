@@ -52,6 +52,9 @@ public class MainActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		new UpdateDatabaseTask(this).execute();
+		
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections
 		// of the app.
@@ -83,7 +86,7 @@ public class MainActivity extends FragmentActivity {
 			new UpdateDatabaseTask(this).execute();
 			return true;
 		case R.id.menu_reorder:
-			// TODO
+			// TODO item #19
 			// finish read this http://www.androiddesignpatterns.com/2012/07/loaders-and-loadermanager-background.html
 			//((PlayersFragment)mSectionsPagerAdapter.getItem(ITEM_PLAYERS)).getLoaderManager()
 			Log.i(Constants.TAG,"reodering from menu...");
@@ -143,6 +146,7 @@ public class MainActivity extends FragmentActivity {
 			}
 			return null;
 		}
+		
 	}
 
 	/**
