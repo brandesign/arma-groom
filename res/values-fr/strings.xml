@@ -6,6 +6,7 @@
     <string name="server_info_intro">Page d\'information serveur</string>
     <string name="menu_settings">Paramètres</string>
     <string name="menu_refresh">Rafraîchir</string>
+    <string name="menu_reorder">Re-trier</string>
     <string name="title_activity_main">Salon d\'Armagetron</string>
     <string name="title_activity_server_info">Information Serveur</string>
     <string name="numplayers_separator">/</string>

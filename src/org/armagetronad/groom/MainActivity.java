@@ -21,6 +21,7 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,7 +79,14 @@ public class MainActivity extends FragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_refresh:
+			Log.i(Constants.TAG,"refreshing from menu...");
 			new UpdateDatabaseTask(this).execute();
+			return true;
+		case R.id.menu_reorder:
+			// TODO
+			// finish read this http://www.androiddesignpatterns.com/2012/07/loaders-and-loadermanager-background.html
+			//((PlayersFragment)mSectionsPagerAdapter.getItem(ITEM_PLAYERS)).getLoaderManager()
+			Log.i(Constants.TAG,"reodering from menu...");
 			return true;
 		case R.id.menu_settings:
 		default:
@@ -146,6 +154,11 @@ public class MainActivity extends FragmentActivity {
 		private static final String[] PROJECTION = null;
 		private static final String SELECTION = null;
 		private static final String[] SELECTION_ARGS = null;
+		private final int ORDER_NAME = 0;
+		private final int ORDER_GID = 1;
+		// default value
+		private int order_by = 0;
+		
 		
 		public PlayersFragment() {
 		}
@@ -165,10 +178,25 @@ public class MainActivity extends FragmentActivity {
 		public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 			// Now create and return a CursorLoader that will take care of
 			// creating a Cursor for the data being displayed.
+			
 			return new CursorLoader(getActivity(), ArmaProvider.URI_PLAYERS,
 					PROJECTION, SELECTION, SELECTION_ARGS,
-					Player.PLAYER_NAME + " ASC");
+					getLoaderOrder());
 		}
+
+		private String getLoaderOrder() {
+			String order = Player.PLAYER_NAME + " ASC";
+			switch(order_by) {
+			case ORDER_NAME:
+				order = Player.PLAYER_NAME + " ASC";
+				break;
+			case ORDER_GID:
+				order = Player.PLAYER_GLOBAL_ID + "ASC";
+				break;
+			}
+			return order;
+		}
+
 
 		// Called when a previously created loader has finished loading
 		public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
