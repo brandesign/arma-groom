@@ -104,8 +104,8 @@ public class ServerInfo extends FragmentActivity {
 			String uncoloredUrl = ArmaUtils.uncolourize(url);
 
 			setContentView(R.layout.activity_server_info);
-			((TextView) findViewById(R.id.server_info_server_name)).setText(
-					coloredName);
+			((TextView) findViewById(R.id.server_info_server_name))
+					.setText(coloredName);
 			((TextView) findViewById(R.id.server_info_server_ip)).setText(ip);
 			((TextView) findViewById(R.id.server_info_server_port))
 					.setText(port);
@@ -145,34 +145,38 @@ public class ServerInfo extends FragmentActivity {
 			setContentView(R.layout.activity_server_info_not_found);
 		}
 
-//		View opt = findViewById(R.id.server_info_optional);
-//		ViewTreeObserver vto = opt.getViewTreeObserver();
-//		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-//			@Override
-//			public void onGlobalLayout() {
-//				View opt = findViewById(R.id.server_info_optional);
-//				opt.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-//				optHeight = opt.getMeasuredHeight();
-//				opt.getLayoutParams().height = 0;
-//			}
-//		});
+		// View opt = findViewById(R.id.server_info_optional);
+		// ViewTreeObserver vto = opt.getViewTreeObserver();
+		// vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+		// @Override
+		// public void onGlobalLayout() {
+		// View opt = findViewById(R.id.server_info_optional);
+		// opt.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+		// optHeight = opt.getMeasuredHeight();
+		// opt.getLayoutParams().height = 0;
+		// }
+		// });
 
 		View header = findViewById(R.id.server_info_header);
-		header.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				View opt = findViewById(R.id.server_info_optional);
-//				DropDownAnim anim = new DropDownAnim(opt, optHeight);
-//				anim.setDuration(500);
-//				opt.startAnimation(anim);
-				if(opt.getVisibility() == View.VISIBLE) {
-					opt.setVisibility(View.GONE);
-				} else {
-					opt.setVisibility(View.VISIBLE);
+		// in case we are on the "server not found" view
+		if (null != header) {
+			header.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					View opt = findViewById(R.id.server_info_optional);
+					// DropDownAnim anim = new DropDownAnim(opt, optHeight);
+					// anim.setDuration(500);
+					// opt.startAnimation(anim);
+					if (opt.getVisibility() == View.VISIBLE) {
+						opt.setVisibility(View.GONE);
+					} else {
+						opt.setVisibility(View.VISIBLE);
+					}
 				}
-			}
-		});
+			});
+		}
 	}
 
 	@Override

@@ -13,6 +13,6 @@
     <string name="pref_display_empty_servers_title">Afficher les serveurs vides</string>
     <string name="pref_display_empty_servers_summary">Si sélectionné, les serveurs sans joueur seront affichés</string>
     <string name="pref_cat_serverlist">Liste des serveurs</string>
-    <string name="server_not_found">Serveur inexistant</string>
+    <string name="server_not_found">Serveur inexistant, veuillez essayer à nouveau</string>
 
 </resources>
