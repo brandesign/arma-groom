@@ -67,8 +67,7 @@ public class UpdateDatabaseTask extends AsyncTask<Void, String, Boolean> {
 						.parse(dateStr);
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			lastDate = null;
 		} catch (ParseException e) {
 			lastDate = null;
 		}

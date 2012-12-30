@@ -189,4 +189,9 @@ public class DownloadXmlTask extends AsyncTask<String, String, Void> {
 		return serversFeed;
 	}
 
+	@Override
+	protected void onCancelled() {
+		ArmaUtils.displayMessage(context, "Error while updating servers info", Toast.LENGTH_LONG);
+		super.onCancelled();
+	}
 }
