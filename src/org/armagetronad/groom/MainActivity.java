@@ -53,7 +53,7 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		new UpdateDatabaseTask(this).execute();
+		new UpdateDatabaseTask(this,true).execute();
 		
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections

@@ -21,35 +21,38 @@ public class UpdateDatabaseTask extends AsyncTask<Void, String, Boolean> {
 
 	private final Context displayContext;
 	private Date last;
+	private boolean creating;
 
 	public UpdateDatabaseTask(Context displayContext) {
+		this(displayContext, false);
+	}
+
+	public UpdateDatabaseTask(Context displayContext, boolean creating) {
 		this.displayContext = displayContext;
+		this.creating = creating;
 	}
 
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
 	}
-	
+
 	@Override
 	protected void onProgressUpdate(String... values) {
 		try {
-			Toast.makeText(displayContext, values[0], Toast.LENGTH_LONG)
-					.show();
-	} catch (Exception e) {
-		Log.e(Constants.TAG, "Couldn't display message", e);
-	}
+			Toast.makeText(displayContext, values[0], Toast.LENGTH_LONG).show();
+		} catch (Exception e) {
+			Log.e(Constants.TAG, "Couldn't display message", e);
+		}
 	}
 
 	@Override
 	protected Boolean doInBackground(Void... params) {
-		if(ArmaUtils.isOnline(displayContext)) {
-			publishProgress("Refreshing...");
-		} else {
+		if (!ArmaUtils.isOnline(displayContext)) {
 			publishProgress("Cannot connect to the internet");
 			cancel(true);
+			return false;
 		}
-		// TODO find a way to cache the date application wide
 		ContentProviderClient client = displayContext.getContentResolver()
 				.acquireContentProviderClient(ArmaProvider.URI_SETTINGS);
 		Cursor cursor;
@@ -76,9 +79,17 @@ public class UpdateDatabaseTask extends AsyncTask<Void, String, Boolean> {
 	}
 
 	@Override
-	protected void onPostExecute(Boolean result) {
-		new DownloadXmlTask(displayContext, last)
-		.execute(Constants.URL_XML_FEEDS);
+	protected void onPostExecute(Boolean isOnline) {
+		if (isOnline && (!creating || last == null)) {
+			if (creating) {
+				publishProgress("Getting the data from the internet...");
+			} else {
+				publishProgress("Refreshing...");
+			}
+				new DownloadXmlTask(displayContext, last)
+						.execute(Constants.URL_XML_FEEDS);
+		} else if (!creating) {
+			publishProgress("You are not connected to the internet");
+		}
 	}
-
 }
