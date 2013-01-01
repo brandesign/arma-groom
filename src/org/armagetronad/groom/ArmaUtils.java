@@ -25,19 +25,16 @@ public class ArmaUtils {
 
 	static {
 		auths.put("ct",
-				new String[] { "http://crazy-tronners.com/memberlist.php" });
-		auths.put(
-				"forums",
-				new String[] {
-						"http://forums3.armagetronad.net/memberlist.php?mode=viewprofile&un=",
-						"" });
+				new String[] { "http://crazy-tronners.com/users.php?sort=auth_last&sort_type=DESC&q=", "" });
+		auths.put("forums",
+				new String[] { "http://forums3.armagetronad.net/memberlist.php?mode=viewprofile&un=", "" });
 		auths.put("pru", new String[] {
-				"http://trongame.de/forum/memberlist.php?mode=viewprofile&un=",
-				"" });
+				"http://trongame.de/forum/memberlist.php?mode=viewprofile&un=", "" });
 		auths.put("phoenix-clan.org", new String[] {
-				"http://phoenix-clan.org/memberlist.php?mode=viewprofile&un=",
-				"" });
+				"http://phoenix-clan.org/memberlist.php?mode=viewprofile&un=", "" });
 		auths.put("aagid", new String[] { "http://aagid.net/" });
+		auths.put("mym", new String[] { "http://www.mymclan.com/memberlist.php?mode=viewprofile&un=", "" });
+		auths.put("speedersclan.org", new String[] { "http://speedersclan.org/forums/memberlist.php?mode=viewprofile&un=", "" });
 	}
 
 	public static final String uncolourize(String str) {
@@ -147,6 +144,13 @@ public class ArmaUtils {
 
 			ret = new SpannableString(Html.fromHtml("<a href=\"" + link + "\">"
 					+ gid + "</a>"));
+			
+		} else if (mainAuth.matches(".*\\..*")) { // if it contains a dot
+			
+			// we try a link to the supposed webpage of this auth
+			ret = new SpannableString(Html.fromHtml("<a href=\"http://" + mainAuth + "\">"
+					+ gid + "</a>"));
+			
 		}
 
 		return ret;
