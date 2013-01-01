@@ -33,6 +33,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.armagetronad.groom.MainActivity" />
         </activity>
+        
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_settings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.armagetronad.groom.MainActivity" />
+        </activity>
 
         <provider
             android:name="org.armagetronad.groom.content.ArmaProvider"

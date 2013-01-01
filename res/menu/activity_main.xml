@@ -6,9 +6,9 @@
         android:orderInCategory="10"
         android:visible="true"/>
     
-    <item android:id="@+id/menu_reorder"
-        android:title="@string/menu_reorder"
+    <item android:id="@+id/menu_settings"
+        android:title="@string/menu_settings"
         android:orderInCategory="20"
-        android:visible="false"/> <!-- set to false for release 1.1 has to change for 1.2 -->
+        android:visible="true"/>
     
 </menu>

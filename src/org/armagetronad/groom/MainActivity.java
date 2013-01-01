@@ -85,13 +85,14 @@ public class MainActivity extends FragmentActivity {
 			Log.i(Constants.TAG,"refreshing from menu...");
 			new UpdateDatabaseTask(this).execute();
 			return true;
-		case R.id.menu_reorder:
+		case R.id.menu_settings:
 			// TODO item #19
 			// finish read this http://www.androiddesignpatterns.com/2012/07/loaders-and-loadermanager-background.html
 			//((PlayersFragment)mSectionsPagerAdapter.getItem(ITEM_PLAYERS)).getLoaderManager()
-			Log.i(Constants.TAG,"reodering from menu...");
+			Log.i(Constants.TAG,"opening settings from menu...");
+	        Intent intent = new Intent(this, Settings.class);
+	        this.startActivity(intent);
 			return true;
-		case R.id.menu_settings:
 		default:
 			return super.onOptionsItemSelected(item);
 		}

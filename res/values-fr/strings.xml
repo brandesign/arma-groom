@@ -9,6 +9,7 @@
     <string name="menu_reorder">Re-trier</string>
     <string name="title_activity_main">Salon d\'Armagetron</string>
     <string name="title_activity_server_info">Information Serveur</string>
+    <string name="title_activity_settings">Paramètres</string>
     <string name="numplayers_separator">/</string>
     <string name="pref_display_empty_servers_title">Afficher les serveurs vides</string>
     <string name="pref_display_empty_servers_summary">Si sélectionné, les serveurs sans joueur seront affichés</string>

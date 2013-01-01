@@ -9,6 +9,7 @@
     <string name="menu_reorder">Reorder</string>
     <string name="title_activity_main">Armagetron Lounge</string>
     <string name="title_activity_server_info">Server Info</string>
+    <string name="title_activity_settings">Settings</string>
     <string name="numplayers_separator">/</string>
     <string name="pref_display_empty_servers_title">Display empty servers</string>
     <string name="pref_display_empty_servers_summary">If selected, servers with no players inside will be displayed on the servers list</string>
