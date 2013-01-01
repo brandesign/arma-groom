@@ -10,8 +10,10 @@ import org.armagetronad.groom.content.ArmaContent.Server;
 import org.armagetronad.groom.content.UpdateDatabaseTask;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -159,10 +161,6 @@ public class MainActivity extends FragmentActivity {
 		private static final String[] PROJECTION = null;
 		private static final String SELECTION = null;
 		private static final String[] SELECTION_ARGS = null;
-		private final int ORDER_NAME = 0;
-		private final int ORDER_GID = 1;
-		// default value
-		private int order_by = 0;
 		
 		
 		public PlayersFragment() {
@@ -190,16 +188,13 @@ public class MainActivity extends FragmentActivity {
 		}
 
 		private String getLoaderOrder() {
-			String order = Player.PLAYER_NAME + " ASC";
-			switch(order_by) {
-			case ORDER_NAME:
-				order = Player.PLAYER_NAME + " ASC";
-				break;
-			case ORDER_GID:
-				order = Player.PLAYER_GLOBAL_ID + "ASC";
-				break;
+			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+			boolean orderByGID = sharedPref.getBoolean(Settings.KEY_PREF_ORDER_BY_GID, false);
+			if(orderByGID) {
+				return Player.PLAYER_GLOBAL_ID + "ASC";
+			} else {
+				return Player.PLAYER_NAME + " ASC";
 			}
-			return order;
 		}
 
 
@@ -239,8 +234,6 @@ public class MainActivity extends FragmentActivity {
 			LoaderCallbacks<Cursor> {
 		private ServersCursorAdapter mAdapter;
 		private static final String[] PROJECTION = null;
-		private static final String SELECTION = Server.SERVER_NUMPLAYERS
-				+ " > 0";
 		private static final String[] SELECTION_ARGS = null;
 
 		public ServersFragment() {
@@ -260,8 +253,18 @@ public class MainActivity extends FragmentActivity {
 			// Now create and return a CursorLoader that will take care of
 			// creating a Cursor for the data being displayed.
 			return new CursorLoader(getActivity(), ArmaProvider.URI_SERVERS,
-					PROJECTION, SELECTION, SELECTION_ARGS,
+					PROJECTION, getSelection(), SELECTION_ARGS,
 					Server.SERVER_NUMPLAYERS + " DESC");
+		}
+
+		private String getSelection() {
+			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+			boolean displayEmpty = sharedPref.getBoolean(Settings.KEY_PREF_DISPLAY_EMPTY_SERVERS, false);
+			if (displayEmpty) {
+				return null;
+			} else {
+				return Server.SERVER_NUMPLAYERS + " > 0";
+			}
 		}
 
 		// Called when a previously created loader has finished loading

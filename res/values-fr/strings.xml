@@ -1,19 +1,32 @@
 <resources>
 
+    <!--  Global strings -->
     <string name="app_name">Armagetron Advanced Groom</string>
     <string name="title_section_players">Joueurs</string>
     <string name="title_section_servers">Serveurs</string>
-    <string name="server_info_intro">Page d\'information serveur</string>
+    
+    <!-- menu items -->
     <string name="menu_settings">Paramètres</string>
     <string name="menu_refresh">Rafraîchir</string>
-    <string name="menu_reorder">Re-trier</string>
+    
+    <!-- Activities titles -->
     <string name="title_activity_main">Salon d\'Armagetron</string>
     <string name="title_activity_server_info">Information Serveur</string>
     <string name="title_activity_settings">Paramètres</string>
-    <string name="numplayers_separator">/</string>
+    
+    <!-- Preferences -->
+    <string name="pref_cat_serverslist">Liste des serveurs</string>
     <string name="pref_display_empty_servers_title">Afficher les serveurs vides</string>
     <string name="pref_display_empty_servers_summary">Si sélectionné, les serveurs sans joueur seront affichés</string>
-    <string name="pref_cat_serverlist">Liste des serveurs</string>
+    <string name="pref_cat_playerslist">Liste des joueurs</string>
+    <string name="pref_order_by_gid_title">Trier par GID</string>
+    <string name="pref_order_by_gid_summary">Quand sélectionné, les joueurs sont triés par GID et non pas par nom</string>
+    
+    <!-- Layout contents -->
+    <string name="numplayers_separator">/</string>
     <string name="server_not_found">Serveur inexistant, veuillez essayer à nouveau</string>
+    <string name="server_info_intro">Page d\'information serveur</string>
+    
+    
 
 </resources>

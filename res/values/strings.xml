@@ -1,18 +1,30 @@
 <resources>
 
+    <!--  Global strings -->
     <string name="app_name">Armagetron Advanced Groom</string>
     <string name="title_section_players">Players</string>
     <string name="title_section_servers">Servers</string>
-    <string name="server_info_intro">Server information page</string>
+    
+    <!-- menu items -->
     <string name="menu_settings">Settings</string>
     <string name="menu_refresh">Refresh</string>
-    <string name="menu_reorder">Reorder</string>
+    
+    <!-- Activities titles -->
     <string name="title_activity_main">Armagetron Lounge</string>
     <string name="title_activity_server_info">Server Info</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="numplayers_separator">/</string>
+    
+    <!-- Preferences -->
+    <string name="pref_cat_serverslist">Servers List</string>
     <string name="pref_display_empty_servers_title">Display empty servers</string>
     <string name="pref_display_empty_servers_summary">If selected, servers with no players inside will be displayed on the servers list</string>
-    <string name="pref_cat_serverlist">Servers List</string>
+    <string name="pref_cat_playerslist">Players List</string>
+    <string name="pref_order_by_gid_title">Order by GID</string>
+    <string name="pref_order_by_gid_summary">If selected, players will be ordered by GID and not by name</string>
+    
+    <!-- Layout contents -->
+    <string name="numplayers_separator">/</string>
     <string name="server_not_found">Server not found, please try again</string>
+    <string name="server_info_intro">Server information page</string>
+    
 </resources>

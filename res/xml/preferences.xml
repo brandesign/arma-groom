@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 <PreferenceCategory 
-    android:title="@string/pref_cat_serverlist"
+    android:title="@string/pref_cat_serverslist"
     android:key="pref_cat_serverlist"
     >
     <CheckBoxPreference
@@ -9,6 +9,16 @@
         android:key="pref_display_empty_servers"
         android:summary="@string/pref_display_empty_servers_summary"
         android:title="@string/pref_display_empty_servers_title" />
+    </PreferenceCategory>
+<PreferenceCategory 
+    android:title="@string/pref_cat_playerslist"
+    android:key="pref_cat_playerslist"
+    >
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="pref_order_by_gid"
+        android:summary="@string/pref_order_by_gid_summary"
+        android:title="@string/pref_order_by_gid_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>
