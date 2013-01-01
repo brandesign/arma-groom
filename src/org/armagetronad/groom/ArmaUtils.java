@@ -83,10 +83,7 @@ public class ArmaUtils {
 		// following the game's convention. see
 		// http://bazaar.launchpad.net/~armagetronad-dev/armagetronad/trunk-armagetronad-work/view/head:/src/render/rFont.cpp#L775
 		color = (color == "RESETT") ? "F8F8F8" : color;
-		// we make sure the value is valid.
-		if (color.contains("W")) {
-			Log.i(null, "plop");
-		}
+		// we make sure the value is valid. (maybe unexpected color for people not using right codes)
 		color = color.replaceAll("[^0-9A-F]", "F");
 		return Color.parseColor("#" + color);
 	}
@@ -111,7 +108,6 @@ public class ArmaUtils {
 		}
 		Log.i(Constants.TAG, "got response " + conn.getResponseCode()
 				+ " from server of type " + conn.getContentType());
-		// InputStream stream = conn.getInputStream();
 		return conn;
 	}
 
