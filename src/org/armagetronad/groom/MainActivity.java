@@ -54,9 +54,9 @@ public class MainActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		new UpdateDatabaseTask(this,true).execute();
-		
+
+		new UpdateDatabaseTask(this, true).execute();
+
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections
 		// of the app.
@@ -81,26 +81,40 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	@Override
+	protected void onResume() {
+		super.onResume();
+		try {
+			((PlayersFragment) getSectionsPagerAdapter().getItem(ITEM_PLAYERS))
+					.reload();
+		} catch (IllegalStateException e) {
+		}
+		try {
+			((ServersFragment) getSectionsPagerAdapter().getItem(ITEM_SERVERS))
+					.reload();
+		} catch (IllegalStateException e) {
+		}
+	}
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_refresh:
-			Log.i(Constants.TAG,"refreshing from menu...");
+			Log.i(Constants.TAG, "refreshing from menu...");
 			new UpdateDatabaseTask(this).execute();
 			return true;
 		case R.id.menu_settings:
 			// TODO item #19
-			// finish read this http://www.androiddesignpatterns.com/2012/07/loaders-and-loadermanager-background.html
-			//((PlayersFragment)mSectionsPagerAdapter.getItem(ITEM_PLAYERS)).getLoaderManager()
-			Log.i(Constants.TAG,"opening settings from menu...");
-	        Intent intent = new Intent(this, Settings.class);
-	        this.startActivity(intent);
+			// finish read this
+			// http://www.androiddesignpatterns.com/2012/07/loaders-and-loadermanager-background.html
+			// ((PlayersFragment)mSectionsPagerAdapter.getItem(ITEM_PLAYERS)).getLoaderManager()
+			Log.i(Constants.TAG, "opening settings from menu...");
+			Intent intent = new Intent(this, Settings.class);
+			this.startActivity(intent);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
-	
-
 
 	public SectionsPagerAdapter getSectionsPagerAdapter() {
 		return mSectionsPagerAdapter;
@@ -149,31 +163,30 @@ public class MainActivity extends FragmentActivity {
 			}
 			return null;
 		}
-		
+
 	}
 
 	/**
 	 * The Players fragment
 	 */
 	public static class PlayersFragment extends ListFragment implements
-	LoaderCallbacks<Cursor> {
+			LoaderCallbacks<Cursor> {
 		private PlayersCursorAdapter mAdapter;
 		private static final String[] PROJECTION = null;
 		private static final String SELECTION = null;
 		private static final String[] SELECTION_ARGS = null;
-		
-		
+
 		public PlayersFragment() {
 		}
-
 
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			mAdapter = new PlayersCursorAdapter(getActivity(), null, 0);
 			setListAdapter(mAdapter);
-			Loader<Cursor> loader = getLoaderManager().initLoader(0, null, this);
-			
+			Loader<Cursor> loader = getLoaderManager()
+					.initLoader(0, null, this);
+
 			RuntimeData.addLoader(loader);
 		}
 
@@ -181,22 +194,24 @@ public class MainActivity extends FragmentActivity {
 		public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 			// Now create and return a CursorLoader that will take care of
 			// creating a Cursor for the data being displayed.
-			
+
 			return new CursorLoader(getActivity(), ArmaProvider.URI_PLAYERS,
-					PROJECTION, SELECTION, SELECTION_ARGS,
-					getLoaderOrder());
+					PROJECTION, SELECTION, SELECTION_ARGS, getLoaderOrder());
 		}
 
 		private String getLoaderOrder() {
-			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-			boolean orderByGID = sharedPref.getBoolean(Settings.KEY_PREF_ORDER_BY_GID, false);
-			if(orderByGID) {
-				return "case when nullif(" + Player.PLAYER_GLOBAL_ID + ",'') is null then 1 else 0 end ," + Player.PLAYER_GLOBAL_ID + " ASC";
+			SharedPreferences sharedPref = PreferenceManager
+					.getDefaultSharedPreferences(getActivity());
+			boolean orderByGID = sharedPref.getBoolean(
+					Settings.KEY_PREF_ORDER_BY_GID, false);
+			if (orderByGID) {
+				return "case when nullif(" + Player.PLAYER_GLOBAL_ID
+						+ ",'') is null then 1 else 0 end ,"
+						+ Player.PLAYER_GLOBAL_ID + " ASC";
 			} else {
 				return Player.PLAYER_NAME + " ASC";
 			}
 		}
-
 
 		// Called when a previously created loader has finished loading
 		public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
@@ -221,9 +236,14 @@ public class MainActivity extends FragmentActivity {
 			super.onListItemClick(l, v, position, id);
 			Intent intent = new Intent(getActivity(), ServerInfo.class);
 			Cursor c = (Cursor) getListView().getItemAtPosition(position);
-			long serverId = c.getLong(c.getColumnIndex(Player.PLAYER_SERVER_ID));
+			long serverId = c
+					.getLong(c.getColumnIndex(Player.PLAYER_SERVER_ID));
 			intent.putExtra(SERVER_ID, serverId);
 			startActivity(intent);
+		}
+
+		public void reload() {
+			getLoaderManager().restartLoader(0, null, this);
 		}
 	}
 
@@ -244,7 +264,8 @@ public class MainActivity extends FragmentActivity {
 			super.onCreate(savedInstanceState);
 			mAdapter = new ServersCursorAdapter(getActivity(), null, 0);
 			setListAdapter(mAdapter);
-			Loader<Cursor> loader = getLoaderManager().initLoader(0, null, this);
+			Loader<Cursor> loader = getLoaderManager()
+					.initLoader(0, null, this);
 			RuntimeData.addLoader(loader);
 		}
 
@@ -258,8 +279,10 @@ public class MainActivity extends FragmentActivity {
 		}
 
 		private String getSelection() {
-			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-			boolean displayEmpty = sharedPref.getBoolean(Settings.KEY_PREF_DISPLAY_EMPTY_SERVERS, false);
+			SharedPreferences sharedPref = PreferenceManager
+					.getDefaultSharedPreferences(getActivity());
+			boolean displayEmpty = sharedPref.getBoolean(
+					Settings.KEY_PREF_DISPLAY_EMPTY_SERVERS, false);
 			if (displayEmpty) {
 				return null;
 			} else {
@@ -293,7 +316,11 @@ public class MainActivity extends FragmentActivity {
 			intent.putExtra(SERVER_ID, serverId);
 			startActivity(intent);
 		}
+
+		public void reload() {
+			getLoaderManager().restartLoader(0, null, this);
+		}
+
 	}
 
-	
 }
