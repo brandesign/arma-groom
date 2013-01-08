@@ -206,10 +206,11 @@ public class MainActivity extends FragmentActivity {
 					Settings.KEY_PREF_ORDER_BY_GID, false);
 			if (orderByGID) {
 				return "case when nullif(" + Player.PLAYER_GLOBAL_ID
-						+ ",'') is null then 1 else 0 end ,"
-						+ Player.PLAYER_GLOBAL_ID + " ASC";
+						+ ",'') is null then 1 else 0 end ,lower("
+						+ Player.PLAYER_GLOBAL_ID + "), lower(" + Player.PLAYER_NAME
+						+ ") ASC";
 			} else {
-				return Player.PLAYER_NAME + " ASC";
+				return "lower(" + Player.PLAYER_NAME + ") ASC";
 			}
 		}
 
