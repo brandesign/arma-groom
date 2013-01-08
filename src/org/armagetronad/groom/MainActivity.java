@@ -191,7 +191,7 @@ public class MainActivity extends FragmentActivity {
 			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 			boolean orderByGID = sharedPref.getBoolean(Settings.KEY_PREF_ORDER_BY_GID, false);
 			if(orderByGID) {
-				return Player.PLAYER_GLOBAL_ID + " ASC";
+				return "case when nullif(" + Player.PLAYER_GLOBAL_ID + ",'') is null then 1 else 0 end ," + Player.PLAYER_GLOBAL_ID + " ASC";
 			} else {
 				return Player.PLAYER_NAME + " ASC";
 			}
