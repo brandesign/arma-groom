@@ -41,6 +41,9 @@ public ArmaserversXmlParser(Date date) {
 		Date date = new Date();
 		Calendar cal = Calendar.getInstance();
 		while (parser.next() != XmlPullParser.END_TAG) {
+			if(parser.getEventType() == XmlPullParser.END_DOCUMENT) {
+				return null;
+			}
 	        if (parser.getEventType() != XmlPullParser.START_TAG) {
 	            continue;
 	        }
