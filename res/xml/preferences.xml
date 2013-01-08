@@ -7,8 +7,10 @@
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="pref_display_empty_servers"
-        android:summary="@string/pref_display_empty_servers_summary"
-        android:title="@string/pref_display_empty_servers_title" />
+        android:title="@string/pref_display_empty_servers_title"
+        android:summaryOn="@string/pref_display_empty_servers_summary_on"
+        android:summaryOff="@string/pref_display_empty_servers_summary_off"
+         />
     </PreferenceCategory>
 <PreferenceCategory 
     android:title="@string/pref_cat_playerslist"
@@ -17,8 +19,9 @@
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="pref_order_by_gid"
-        android:summary="@string/pref_order_by_gid_summary"
-        android:title="@string/pref_order_by_gid_title" />
+        android:title="@string/pref_order_by_gid_title"
+        android:summaryOn="@string/pref_order_by_gid_summary_on"
+        android:summaryOff="@string/pref_order_by_gid_summary_off"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

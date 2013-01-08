@@ -17,10 +17,12 @@
     <!-- Preferences -->
     <string name="pref_cat_serverslist">Servers List</string>
     <string name="pref_display_empty_servers_title">Display empty servers</string>
-    <string name="pref_display_empty_servers_summary">If selected, servers with no players inside will be displayed on the servers list</string>
+    <string name="pref_display_empty_servers_summary_on">Servers with no players inside are displayed on the servers list</string>
+    <string name="pref_display_empty_servers_summary_off">Only servers having players inside are displayed on the servers list</string>
     <string name="pref_cat_playerslist">Players List</string>
     <string name="pref_order_by_gid_title">Order by GID</string>
-    <string name="pref_order_by_gid_summary">If selected, players will be ordered by GID and not by name</string>
+    <string name="pref_order_by_gid_summary_on">Players are ordered by GID</string>
+    <string name="pref_order_by_gid_summary_off">Players are ordered by name</string>
     
     <!-- Layout contents -->
     <string name="numplayers_separator">/</string>

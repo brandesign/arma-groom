@@ -17,10 +17,12 @@
     <!-- Preferences -->
     <string name="pref_cat_serverslist">Liste des serveurs</string>
     <string name="pref_display_empty_servers_title">Afficher les serveurs vides</string>
-    <string name="pref_display_empty_servers_summary">Si sélectionné, les serveurs sans joueur seront affichés</string>
+    <string name="pref_display_empty_servers_summary_on">Les serveurs sans joueur sont affichés</string>
+    <string name="pref_display_empty_servers_summary_off">Seuls les serveurs peuplés sont affichés</string>
     <string name="pref_cat_playerslist">Liste des joueurs</string>
     <string name="pref_order_by_gid_title">Trier par GID</string>
-    <string name="pref_order_by_gid_summary">Quand sélectionné, les joueurs sont triés par GID et non pas par nom</string>
+    <string name="pref_order_by_gid_summary_on">Les joueurs sont triés par GID</string>
+    <string name="pref_order_by_gid_summary_off">Les joueurs sont triés par leur nom</string>
     
     <!-- Layout contents -->
     <string name="numplayers_separator">/</string>
