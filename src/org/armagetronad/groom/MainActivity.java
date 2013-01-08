@@ -276,7 +276,7 @@ public class MainActivity extends FragmentActivity {
 			// creating a Cursor for the data being displayed.
 			return new CursorLoader(getActivity(), ArmaProvider.URI_SERVERS,
 					PROJECTION, getSelection(), SELECTION_ARGS,
-					Server.SERVER_NUMPLAYERS + " DESC");
+					Server.SERVER_NUMPLAYERS + " DESC, lower("+Server.SERVER_NAME+") DESC");
 		}
 
 		private String getSelection() {
