@@ -87,7 +87,7 @@ public class UpdateDatabaseTask extends AsyncTask<Void, String, Boolean> {
 				publishProgress("Refreshing...");
 			}
 				new DownloadXmlTask(displayContext, last)
-						.execute(Constants.URL_XML_FEEDS);
+						.execute(ArmaUtils.randomizeArray(Constants.URL_XML_FEEDS));
 		} else if (!creating) {
 			publishProgress("You are not connected to the internet");
 		}

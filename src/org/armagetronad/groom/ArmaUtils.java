@@ -5,7 +5,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -179,5 +182,19 @@ public class ArmaUtils {
 	        return true;
 	    }
 	    return false;
+	}
+
+	public static String[] randomizeArray(String[] array) {
+
+		Arrays.sort(array, new Comparator<String>() {
+
+			private final Random generator = new Random();
+			@Override
+			public int compare(String lhs, String rhs) {
+				// returns a random int between 1 and -1
+				return (generator.nextInt(1) * 2) - 1;
+			}
+		});
+		return array;
 	}
 }
