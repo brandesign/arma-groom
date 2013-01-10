@@ -15,14 +15,17 @@
     <string name="title_activity_settings">Paramètres</string>
     
     <!-- Preferences -->
-    <string name="pref_cat_serverslist">Liste des serveurs</string>
+    <string name="pref_cat_display">Affichage</string>
     <string name="pref_display_empty_servers_title">Afficher les serveurs vides</string>
     <string name="pref_display_empty_servers_summary_on">Les serveurs sans joueur sont affichés</string>
     <string name="pref_display_empty_servers_summary_off">Seuls les serveurs peuplés sont affichés</string>
-    <string name="pref_cat_playerslist">Liste des joueurs</string>
     <string name="pref_order_by_gid_title">Trier par GID</string>
     <string name="pref_order_by_gid_summary_on">Les joueurs sont triés par GID</string>
     <string name="pref_order_by_gid_summary_off">Les joueurs sont triés par leur nom</string>
+    <string name="pref_cat_data">Données</string>
+    <string name="pref_auto_update_title">Mise à jour automatique</string>
+    <string name="pref_auto_update_summary_on">Télécharge les informations sur internet automatiquement</string>
+    <string name="pref_auto_update_summary_off">Ne met pas à jour les données des serveurs automatiquement</string>
     
     <!-- Layout contents -->
     <string name="numplayers_separator">/</string>

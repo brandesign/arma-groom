@@ -5,8 +5,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="org.armagetronad.groom.provider.permission.WRITE" />
-    <uses-permission android:name="org.armagetronad.groom.provider.permission.READ" />
+    <uses-permission android:name=".provider.permission.WRITE" />
+    <uses-permission android:name=".provider.permission.READ" />
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -16,38 +16,41 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name=".ServerInfo"
             android:label="@string/title_activity_server_info" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.armagetronad.groom.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
-        
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.armagetronad.groom.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
 
+        <service
+            android:name=".content.UpdateDataService"
+            android:exported="false" >
+        </service>
+
         <provider
-            android:name="org.armagetronad.groom.content.ArmaProvider"
+            android:name=".content.ArmaProvider"
             android:authorities="org.armagetronad.groom.provider"
             android:enabled="true"
-            android:writePermission="org.armagetronad.groom.provider.permission.WRITE"
-            android:readPermission="org.armagetronad.groom.provider.permission.READ">
+            android:readPermission="org.armagetronad.groom.provider.permission.READ"
+            android:writePermission="org.armagetronad.groom.provider.permission.WRITE" >
         </provider>
     </application>
 

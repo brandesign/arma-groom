@@ -3,6 +3,12 @@ package org.armagetronad.groom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.armagetronad.groom.content.ArmaContent.Player;
 import org.armagetronad.groom.content.ArmaProvider;
@@ -28,6 +34,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
@@ -54,12 +61,9 @@ public class MainActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		new UpdateDatabaseTask(this, true).execute();
-
-		// Create the adapter that will return a fragment for each of the three
-		// primary sections
-		// of the app.
+		// Create the adapter that will return a fragment for each of the two
+		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
 				getSupportFragmentManager());
 
@@ -103,10 +107,6 @@ public class MainActivity extends FragmentActivity {
 			new UpdateDatabaseTask(this).execute();
 			return true;
 		case R.id.menu_settings:
-			// TODO item #19
-			// finish read this
-			// http://www.androiddesignpatterns.com/2012/07/loaders-and-loadermanager-background.html
-			// ((PlayersFragment)mSectionsPagerAdapter.getItem(ITEM_PLAYERS)).getLoaderManager()
 			Log.i(Constants.TAG, "opening settings from menu...");
 			Intent intent = new Intent(this, Settings.class);
 			this.startActivity(intent);
@@ -207,8 +207,8 @@ public class MainActivity extends FragmentActivity {
 			if (orderByGID) {
 				return "case when nullif(" + Player.PLAYER_GLOBAL_ID
 						+ ",'') is null then 1 else 0 end ,lower("
-						+ Player.PLAYER_GLOBAL_ID + "), lower(" + Player.PLAYER_NAME
-						+ ") ASC";
+						+ Player.PLAYER_GLOBAL_ID + "), lower("
+						+ Player.PLAYER_NAME + ") ASC";
 			} else {
 				return "lower(" + Player.PLAYER_NAME + ") ASC";
 			}
@@ -276,7 +276,8 @@ public class MainActivity extends FragmentActivity {
 			// creating a Cursor for the data being displayed.
 			return new CursorLoader(getActivity(), ArmaProvider.URI_SERVERS,
 					PROJECTION, getSelection(), SELECTION_ARGS,
-					Server.SERVER_NUMPLAYERS + " DESC, lower("+Server.SERVER_NAME+") DESC");
+					Server.SERVER_NUMPLAYERS + " DESC, lower("
+							+ Server.SERVER_NAME + ") DESC");
 		}
 
 		private String getSelection() {

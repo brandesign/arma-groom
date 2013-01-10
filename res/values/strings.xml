@@ -15,14 +15,18 @@
     <string name="title_activity_settings">Settings</string>
     
     <!-- Preferences -->
-    <string name="pref_cat_serverslist">Servers List</string>
+    <string name="pref_cat_display">Display</string>
     <string name="pref_display_empty_servers_title">Display empty servers</string>
     <string name="pref_display_empty_servers_summary_on">Servers with no players inside are displayed on the servers list</string>
     <string name="pref_display_empty_servers_summary_off">Only servers having players inside are displayed on the servers list</string>
-    <string name="pref_cat_playerslist">Players List</string>
     <string name="pref_order_by_gid_title">Order by GID</string>
     <string name="pref_order_by_gid_summary_on">Players are ordered by GID</string>
     <string name="pref_order_by_gid_summary_off">Players are ordered by name</string>
+    <string name="pref_cat_data">Data</string>
+    <string name="pref_auto_update_title">Automatic updates</string>
+    <string name="pref_auto_update_summary_on">Updates data from the Internet automatically</string>
+    <string name="pref_auto_update_summary_off">Updates data only when Refresh is pressed</string>
+    
     
     <!-- Layout contents -->
     <string name="numplayers_separator">/</string>
